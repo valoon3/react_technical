@@ -4,25 +4,28 @@ import {Component} from "react";
 class EventPractice extends Component {
     state = {
         message: '',
+        username: '',
     }
 
-    constructor(props) {
-        super(props);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    handleChange(e) {
+    handleChange = (e) => {
+        console.log(e.target.name);
         this.setState({
-            message: e.target.value
+            [e.target.name]: e.target.value // babel 문법
+            // e.target.name은 해당 인풋의 name을 가르킨다.
         })
     }
 
-    handleClick() {
+    handleClick = () => {
         alert(this.state.message);
         this.setState({
+            username: '',
             message: ''
         });
+    }
+
+    handleKeyPress = (e) => {
+        if(e.key === 'Enter')
+            this.handleClick();
     }
 
     render() {
@@ -34,16 +37,10 @@ class EventPractice extends Component {
                     name="message"
                     placeholder="아무거나 입력해 보세요"
                     value={this.state.message}
-                    onChange={(e) => {
-                        this.setState({message: e.target.value})
-                    }}
+                    onChange={this.handleChange}
+                    onKeyDown={this.handleKeyPress}
                 />
-                <button onClick={() => {
-                    alert(this.state.message);
-                    this.setState({
-                        message: ''
-                    });
-                }}>확인</button>
+                <button onClick={this.handleClick}>확인</button>
             </div>
         )
     }
