@@ -17,7 +17,7 @@ const Profile = () => {
     const profile = data[params.username];
 
     return (
-        <>
+        <div>
             <h1>사용자 프로필</h1>
             {profile ? (
                 <div>
@@ -27,7 +27,7 @@ const Profile = () => {
             ) : (
                 <p>존재하지 않는 프로파일입니다.</p>
             )}
-        </>
+        </div>
     )
 }
 
