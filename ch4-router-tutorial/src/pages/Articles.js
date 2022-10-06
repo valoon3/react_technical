@@ -1,10 +1,12 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link, Outlet} from "react-router-dom";
 
+// Outlet 컴포넌트는 Route의 children으로 들어가는 jsx 엘리먼트를 보여주는 역할을 합니다.
 
 const Articles = () => {
     return (
         <div>
+            <Outlet />
             <ul>
                 <li>
                     <Link to="/articles/1">게시글 1</Link>
