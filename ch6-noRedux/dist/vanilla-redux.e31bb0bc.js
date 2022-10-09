@@ -933,21 +933,22 @@ var INCREASE = 'INCREASE';
 var DECREASE = 'DECREASE';
 
 var toggleSwitch = function toggleSwitch() {
-  {
-    type: TOGGLE_SWITCH;
-  }
+  return {
+    type: TOGGLE_SWITCH
+  };
 };
 
 var increase = function increase(difference) {
-  {
-    type: INCREASE;
-  }
+  return {
+    type: INCREASE,
+    difference: difference
+  };
 };
 
 var decrease = function decrease() {
-  {
-    type: DECREASE;
-  }
+  return {
+    type: DECREASE
+  };
 };
 
 var initState = {
@@ -981,6 +982,38 @@ function reducer() {
 }
 
 var store = (0, _redux.createStore)(reducer);
+
+var render = function render() {
+  var state = store.getState(); // 현재 상태를 불러옵니다.
+  // 토글 처리
+
+  state.toggle ? divToggle.classList.add('active') : divToggle.classList.remove('active'); // 카운터 처리
+
+  counter.innerText = state.counter;
+};
+
+render();
+store.subscribe(render);
+
+var listener = function listener() {
+  console.log('상태가 업데이트됨');
+};
+
+var unSubScribe = store.subscribe(listener); // unSubScribe();
+
+store.subscribe(render);
+
+divToggle.onClick = function () {
+  store.dispatch(toggleSwitch());
+};
+
+btnIncreas.onClick = function () {
+  store.dispatch(increase(1));
+};
+
+btnDecreas.onClick = function () {
+  store.dispatch(decrease(1));
+};
 },{"redux":"../node_modules/redux/es/redux.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -1009,7 +1042,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61592" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50762" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

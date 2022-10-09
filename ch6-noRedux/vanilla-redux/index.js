@@ -1,5 +1,6 @@
 import {createStore} from "redux";
 
+
 const divToggle = document.querySelector('.toggle');
 const counter = document.querySelector('h1');
 const btnIncreas = document.querySelector('#increase');
@@ -9,9 +10,9 @@ const TOGGLE_SWITCH = 'TOGGLE_SWITCH';
 const INCREASE = 'INCREASE';
 const DECREASE = 'DECREASE';
 
-const toggleSwitch = () => {{type: TOGGLE_SWITCH}};
-const increase = (difference) => {{type: INCREASE}};
-const decrease = () => {{type: DECREASE}};
+const toggleSwitch = () => ({type: TOGGLE_SWITCH});
+const increase = (difference) => ({type: INCREASE, difference});
+const decrease = () => ({type: DECREASE});
 
 const initState = {
     toggle: false,
@@ -42,3 +43,35 @@ function reducer(state = initState, action) {
 
 const store = createStore(reducer);
 
+const render = () => {
+    const state = store.getState(); // 현재 상태를 불러옵니다.
+
+    // 토글 처리
+    state.toggle ? divToggle.classList.add('active') : divToggle.classList.remove('active');
+
+    // 카운터 처리
+    counter.innerText = state.counter;
+
+}
+render();
+store.subscribe(render);
+
+const listener = () => {
+    console.log('상태가 업데이트됨');
+}
+const unSubScribe = store.subscribe(listener);
+// unSubScribe();
+
+store.subscribe(render);
+
+divToggle.onClick = () => {
+    store.dispatch(toggleSwitch());
+}
+
+btnIncreas.onClick = () => {
+    store.dispatch(increase(1));
+}
+
+btnDecreas.onClick = () => {
+    store.dispatch(decrease(1));
+}
