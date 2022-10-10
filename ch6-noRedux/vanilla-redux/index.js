@@ -47,7 +47,13 @@ const render = () => {
     const state = store.getState(); // 현재 상태를 불러옵니다.
 
     // 토글 처리
-    state.toggle ? divToggle.classList.add('active') : divToggle.classList.remove('active');
+    // state.toggle ? divToggle.classList.add('active') : divToggle.classList.remove('active');
+
+    if(state.toggle) {
+        divToggle.classList.add('active');
+    } else {
+        divToggle.classList.remove('active');
+    }
 
     // 카운터 처리
     counter.innerText = state.counter;
@@ -59,8 +65,7 @@ store.subscribe(render);
 const listener = () => {
     console.log('상태가 업데이트됨');
 }
-const unSubScribe = store.subscribe(listener);
-// unSubScribe();
+// const unSubScribe = store.subscribe(listener);
 
 store.subscribe(render);
 
@@ -73,5 +78,7 @@ btnIncreas.onClick = () => {
 }
 
 btnDecreas.onClick = () => {
-    store.dispatch(decrease(1));
+    store.dispatch(decrease());
 }
+
+console.log('안녕');

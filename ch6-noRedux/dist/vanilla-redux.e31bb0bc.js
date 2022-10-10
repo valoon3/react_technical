@@ -986,8 +986,14 @@ var store = (0, _redux.createStore)(reducer);
 var render = function render() {
   var state = store.getState(); // 현재 상태를 불러옵니다.
   // 토글 처리
+  // state.toggle ? divToggle.classList.add('active') : divToggle.classList.remove('active');
 
-  state.toggle ? divToggle.classList.add('active') : divToggle.classList.remove('active'); // 카운터 처리
+  if (state.toggle) {
+    divToggle.classList.add('active');
+  } else {
+    divToggle.classList.remove('active');
+  } // 카운터 처리
+
 
   counter.innerText = state.counter;
 };
@@ -997,9 +1003,8 @@ store.subscribe(render);
 
 var listener = function listener() {
   console.log('상태가 업데이트됨');
-};
+}; // const unSubScribe = store.subscribe(listener);
 
-var unSubScribe = store.subscribe(listener); // unSubScribe();
 
 store.subscribe(render);
 
@@ -1012,8 +1017,10 @@ btnIncreas.onClick = function () {
 };
 
 btnDecreas.onClick = function () {
-  store.dispatch(decrease(1));
+  store.dispatch(decrease());
 };
+
+console.log('안녕');
 },{"redux":"../node_modules/redux/es/redux.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -1042,7 +1049,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50762" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60934" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
