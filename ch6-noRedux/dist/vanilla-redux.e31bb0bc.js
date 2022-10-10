@@ -1008,15 +1008,15 @@ var listener = function listener() {
 
 store.subscribe(render);
 
-divToggle.onClick = function () {
+divToggle.onclick = function () {
   store.dispatch(toggleSwitch());
 };
 
-btnIncreas.onClick = function () {
+btnIncreas.onclick = function () {
   store.dispatch(increase(1));
 };
 
-btnDecreas.onClick = function () {
+btnDecreas.onclick = function () {
   store.dispatch(decrease());
 };
 

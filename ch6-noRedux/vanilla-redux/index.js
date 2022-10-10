@@ -69,15 +69,15 @@ const listener = () => {
 
 store.subscribe(render);
 
-divToggle.onClick = () => {
+divToggle.onclick = () => {
     store.dispatch(toggleSwitch());
 }
 
-btnIncreas.onClick = () => {
+btnIncreas.onclick = () => {
     store.dispatch(increase(1));
 }
 
-btnDecreas.onClick = () => {
+btnDecreas.onclick = () => {
     store.dispatch(decrease());
 }
 
