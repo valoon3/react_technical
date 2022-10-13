@@ -1,10 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
+import Counter from "./components/Counter";
+import Todos from "./components/Todos";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <h1>asdf</h1>
+    <div>
+      <Counter number={0} />
+        <hr />
+        <Todos />
     </div>
   );
 }
