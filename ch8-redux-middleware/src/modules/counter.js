@@ -6,19 +6,13 @@ const initialState = 0;
 export const increase = () => ({ type: INCREASE });
 export const decrease = () => ({ type: DECREASE });
 
-export const counter = (state = initialState) => {
+export const counter = (state = initialState, action) => {
 
-    switch(state.type) {
+    switch(action.type) {
         case INCREASE:
-            return {
-                ...state,
-                state : state++,
-            };
+            return state+1;
         case DECREASE:
-            return {
-                ...state,
-                state: state --,
-            };
+            return state-1;
         default:
             return state;
     }
